@@ -1,4 +1,3 @@
-
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -33,7 +32,7 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler, "css-loader"],
+                use: [stylesHandler, "css-loader", "postcss-loader"],
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
