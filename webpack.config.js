@@ -7,7 +7,7 @@ const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
     mode: isProduction ? "production" : "development",
-    entry: "./client/src/index.js",
+    entry: "./client/src/index.jsx",
     output: {
         path: path.resolve(__dirname, "static"),
         filename: "main.js",
@@ -21,7 +21,7 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
@@ -39,6 +39,9 @@ const config = {
                 type: "asset",
             },
         ],
+    },
+    resolve: {
+        extensions: [".js", ".jsx"],
     },
 };
 

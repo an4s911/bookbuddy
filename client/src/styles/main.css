@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sections h4 {
+    @apply text-sm font-bold text-gray-500;
+}
+
+.sections li {
+    @apply flex items-center gap-3 p-3 rounded-md;
+}
+
+.sections li:hover {
+    @apply bg-gray-200;
+}
+
+nav {
+    @apply flex-col gap-4 p-2 border-[1px] border-gray-300 h-screen min-h-screen max-h-screen w-56 shadow-2xl absolute md:static left-0 top-0 z-10 bg-white;
+}
+
+.icon {
+    @apply w-5 h-5 box-content hover:bg-gray-100 rounded-md p-2 transition-colors;
+}
+
+.left-icons,
+.right-icons {
+    @apply grid grid-cols-2 items-center gap-2;
+}
+
+.left-icons {
+    @apply md:grid-cols-1;
+}
+
+.sections > .section li {
+    @apply flex;
+}
+
+.sections > .section li > *:first-child {
+    @apply flex-shrink-0;
+}
+
+.sections > .section li > *:not(:first-child) {
+    @apply flex-shrink whitespace-nowrap text-ellipsis overflow-hidden text-sm;
+}
