@@ -1,8 +1,19 @@
-import React, { useState } from "react";
-import { PiSidebarSimpleBold, PiPlusBold, PiMagnifyingGlassBold, PiDotsThreeOutlineVerticalFill, PiInfoBold } from "react-icons/pi";
+import React, { useEffect, useRef, useState } from "react";
+import { PiSidebarSimpleBold, PiPlusBold, PiMagnifyingGlassBold, PiDotsThreeOutlineVerticalFill} from "react-icons/pi";
+import InfoMenu from "./InfoMenu";
+import SearchBar from "./SearchBar";
+
 
 function Main({ setIsSideNavOpen }) {
     const [isInfoOpen, setIsInfoOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const searchInputRef = useRef(null);
+
+    useEffect(() => {
+        if (isSearchOpen) {
+            searchInputRef.current.focus();
+        }
+    }, [isSearchOpen]);
 
     return (
         <div className="w-full">
@@ -16,27 +27,16 @@ function Main({ setIsSideNavOpen }) {
                         className="icon"
                     />
                 </div>
-                <div className="text-lg font-bold">
+                <div className="text-lg font-bold md:translate-x-6">
                     Library
                 </div>
                 <div className="right-icons relative">
-                    <PiMagnifyingGlassBold className="icon" />
+                    <PiMagnifyingGlassBold className="icon" onClick={() => setIsSearchOpen(!isSearchOpen)} />
                     <PiDotsThreeOutlineVerticalFill onClick={() => setIsInfoOpen(!isInfoOpen)} className="icon" />
-                    <div className={`absolute top-[140%] -right-3 overflow-clip ${isInfoOpen ? "max-h-96" : "max-h-0"}`} style={{ transition: "max-height 0.2s ease-in-out" }}>
-                        <div className="relative min-w-20 bg-white border-gray-400 ml-6 mr-3 mb-8 top-3 border-[1px] rounded-md p-2" style={{ boxShadow: "-3px 3px 15px -1px rgba(0, 0, 0, 0.3)" }}>
-                            <div className="h-6 absolute w-full overflow-clip top-0 -translate-y-full flex items-start">
-                                <div className="h-5 w-5 rotate-45 bg-white border-gray-400 border-[1px] rounded-b-md rounded-r-md absolute right-4 -bottom-1/2"></div>
-                            </div>
-                            <ul className="">
-                                <li className="clickable text-lg select-none px-3 py-1 flex items-center gap-2">
-                                    <PiInfoBold />
-                                    Info
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <InfoMenu isInfoOpen={isInfoOpen} />
                 </div>
             </div>
+            <SearchBar isSearchOpen={isSearchOpen} searchInputRef={searchInputRef} />
         </div>
     );
 }
