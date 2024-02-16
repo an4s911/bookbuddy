@@ -7,13 +7,9 @@ import { IoMenu } from "react-icons/io5";
 function Nav({ isSideNavOpen }) {
     return (
         <nav className={`${isSideNavOpen ? "transition-x-0" : "-translate-x-full"} md:min-w-[180px] md:w-1/5 md:translate-x-0 absolute left-0 top-0 md:static test md:flex transition-all`}>
-            <div className="header justify-center items-center place-items-center content-center place-content-center grid grid-cols-[30px_1fr_30px] py-3 px-1">
-                <div></div>
-                <div className="title text-center text-md font-bold text-gray-500">
+            <div className="header justify-center items-center place-items-center content-center place-content-center flex py-3 px-1">
+                <div className="title text-center text-md font-bold text-black">
                     Book Buddy
-                </div>
-                <div>
-                    <IoMenu size={24} />
                 </div>
             </div>
             <div className="sections">
